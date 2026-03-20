@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+Import React, { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import { fetchProducts, type ShopifyProduct } from '../lib/shopify';
 
@@ -33,6 +33,7 @@ function shopifyToDisplayProduct(p: ShopifyProduct, idx: number) {
     rot: ROTS[idx % ROTS.length],
     shopifyVariantId: variant?.id,
     shopifyHandle: p.handle,
+    image: p.images.edges[0]?.node.url ?? Null,
   };
 }
 
@@ -77,7 +78,8 @@ export default function Room2({ isVisible, onProductClick }: Room2Props) {
               <motion.span initial={{ y: "100%", opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }} className="inline-block">By his stripes we are healed.</motion.span>
             </div>
           </div>
-          <div className="w-[1px] h-[80px] bg-[var(--whisper)] mx-auto mt-12 hidden md:block z-20 relative" />
+          <div className="w-[1px] h-[80px]
+bg-[var(--whisper)] mx-auto mt-12 hidden md:block z-20 relative" />
         </motion.div>
       </div>
 
@@ -90,7 +92,7 @@ export default function Room2({ isVisible, onProductClick }: Room2Props) {
           {products.map((p, idx) => (
             <motion.div
               key={p.id}
-              className={`flex w-full items-center ${idx % 2 === 0 ? 'justify-start' : 'justify-end'}`}
+              className={flex w-full items-center ${idx % 2 === 0 ? 'justify-start' : 'justify-end'}}
               initial={{ opacity: 0, x: idx % 2 === 0 ? -50 : 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-10%" }}
@@ -98,7 +100,7 @@ export default function Room2({ isVisible, onProductClick }: Room2Props) {
             >
               <div
                 className="w-[90vw] md:w-[48vw] lg:w-[36vw] group cursor-pointer relative"
-                style={{ transform: `rotate(${p.rot}deg)` }}
+                style={{ transform: rotate(${p.rot}deg) }}
                 onClick={() => onProductClick(p)}
               >
                 <div className="absolute inset-0 bg-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 shadow-[inset_0_0_50px_rgba(255,238,221,0.05)] pointer-events-none z-10 clip-diagonal" />
