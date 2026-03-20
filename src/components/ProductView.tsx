@@ -57,16 +57,20 @@ export default function ProductView({ product, onClose }: ProductViewProps) {
           
           {/* Left Side: Empty space or aesthetic graphic since no image */}
           <div className="w-full md:w-1/2 h-[50vh] md:h-full flex items-center justify-center relative">
-             <motion.div 
+             <motion.div
                className="w-[80%] aspect-[3/4] glass-panel clip-diagonal border border-[var(--whisper)] flex items-center justify-center relative overflow-hidden group"
                initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
                animate={{ opacity: 1, scale: 1, rotate: product.rot || 0 }}
                transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
              >
-               <div className="absolute inset-0 bg-gradient-to-tr from-[var(--void)] to-[var(--ash)] opacity-30" />
-               <div className="font-sans text-[12px] tracking-[0.3em] text-[var(--faded)] -rotate-90 uppercase">
-                 AESTHETIC DECAY
-               </div>
+               {product.image ? (
+                 <img src={product.image} alt={product.name} className="absolute inset-0 w-full h-full object-cover opacity-90" />
+               ) : (
+                 <>
+                   <div className="absolute inset-0 bg-gradient-to-tr from-[var(--void)] to-[var(--ash)] opacity-30" />
+                   <div className="font-sans text-[12px] tracking-[0.3em] text-[var(--faded)] -rotate-90 uppercase">AESTHETIC DECAY</div>
+                 </>
+               )}
              </motion.div>
           </div>
 
