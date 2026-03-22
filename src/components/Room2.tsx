@@ -91,14 +91,14 @@ export default function Room2({ isVisible, onProductClick }: Room2Props) {
           {products.map((p, idx) => (
             <motion.div
               key={p.id}
-              className={`flex w-full items-center ${idx % 2 === 0 ? 'justify-start' : 'justify-end'}`}
+              className={`flex w-full items-center pointer-events-auto ${idx % 2 === 0 ? 'justify-start' : 'justify-end'}`}
               initial={{ opacity: 0, x: idx % 2 === 0 ? -50 : 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 1.2, ease: 'easeOut' }}
             >
               <div
-                className="w-[90vw] md:w-[48vw] lg:w-[36vw] group cursor-pointer relative"
+                className="w-[90vw] md:w-[48vw] lg:w-[36vw] group cursor-pointer relative pointer-events-auto"
                 style={{ transform: `rotate(${p.rot}deg)` }}
                 onClick={() => { console.log('CLICKED:', p); onProductClick(p); }}
               >
