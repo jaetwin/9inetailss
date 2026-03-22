@@ -19,13 +19,11 @@ export default function ProductView({ product, onClose }: ProductViewProps) {
     };
   }, []);
 
-  // Extract image URL and product details from Shopify's nested data structure
-  const imageUrl = product.images?.edges?.[0]?.node?.url;
-  const imageAlt = product.images?.edges?.[0]?.node?.altText || product.title;
-  const productName = product.title || product.name;
-  const productPrice = product.priceRange?.minVariantPrice?.amount
-    ? `$${Number(product.priceRange.minVariantPrice.amount).toFixed(0)}`
-    : product.price;
+  // product.image is set by Room2's shopifyToDisplayProduct mapper
+  const imageUrl = product.image ?? product.images?.edges?.[0]?.node?.url;
+  const imageAlt = product.name || product.title || 'Product image';
+  const productName = product.name || product.title;
+  const productPrice = product.price;
 
   return (
     <AnimatePresence>
