@@ -21,6 +21,8 @@ export default function ProductView({ product, onClose }: ProductViewProps) {
 
   // product.image is set by Room2's shopifyToDisplayProduct mapper
   const imageUrl = product.image ?? product.images?.edges?.[0]?.node?.url;
+  console.log('PRODUCT DATA:', product);
+console.log('IMAGE URL:', imageUrl);
   const imageAlt = product.name || product.title || 'Product image';
   const productName = product.name || product.title;
   const productPrice = product.price;
